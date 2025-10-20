@@ -1,0 +1,19 @@
+metals: [GLD, SLV]
+miners: [GDX, GDXJ, SIL, SILJ]
+
+contract_size_oz:
+  GOLD: 100
+  SILVER: 5000
+
+# Map ETFs to underlying metal where applicable
+etf_meta:
+  GLD: { metal: "GOLD", custodian: "HSBC (London)", notes: "London vault chain" }
+  SLV: { metal: "SILVER", custodian: "JPM/HSBC", notes: "Creation/redemption in London" }
+  PSLV:{ metal: "SILVER", custodian: "RBC", notes: "Closed-end trust mechanics differ" }
+
+# Optional: benchmark indices for miner ETFs
+benchmarks:
+  GDX:  "NYSE Arca Gold Miners Index"
+  GDXJ: "MVIS Global Junior Gold Miners"
+  SIL:  "Solactive Global Silver Miners"
+  SILJ: "Prime Junior Silver Miners"

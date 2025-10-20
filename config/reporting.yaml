@@ -1,0 +1,13 @@
+daily:
+  include_tables: [summary, indicators, regime, allocations, stress_flags]
+  stress_threshold_pct: 90
+  narrative_template: "{date}: Au/Ag {metal_summary}. Coverage {coverage:.2f}, backwardation {back:.3%}. Regime: {regime} ({confidence:.0%})."
+  outputs:
+    json: "report/daily/{date}-summary.json"
+    md:   "report/daily/{date}-summary.md"
+
+weekly:
+  charts: [coverage_trend, efp_heatmap, etf_vs_price, lease_curve, liquidity_panel]
+  outputs:
+    html: "report/weekly/{year}-{week}.html"
+    pdf:  "report/weekly/{year}-{week}.pdf"

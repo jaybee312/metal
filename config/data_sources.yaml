@@ -1,0 +1,58 @@
+# Central configuration for endpoints and cadences
+
+quantkiosk:
+  base_url: "https://api.quantkiosk.example"   # placeholder
+  auth_env: "QK_API_KEY"
+  endpoints:
+    prices: "/v1/market/prices"
+    options: "/v1/market/options"
+    etf_holdings: "/v1/funds/etf/holdings"
+    filings: "/v1/sec/filings"
+    fundamentals: "/v1/fundamentals"
+  cadence:
+    prices: "daily"
+    options: "daily"
+    etf_holdings: "daily"
+    filings_13f: "quarterly"
+    filings_13d_g_4: "event"
+    fundamentals: "quarterly"
+
+cme:
+  futures:
+    symbols: ["GC", "SI"]     # Gold, Silver
+    cadence: "daily"
+  warehouse_stocks:
+    cadence: "daily"
+  notes: "Use official CME downloads/APIs; store raw CSV under data/raw/cme/"
+
+cftc:
+  cot:
+    type: "disaggregated"
+    cadence: "weekly"         # published Fri for Tue
+  notes: "Map COT tickers to GC/SI equivalents"
+
+lbma:
+  vault_holdings:
+    cadence: "monthly"
+  notes: "PDF/CSV as available; cite methodology"
+
+etf:
+  tickers: ["GLD","SLV","PSLV"]
+  cadence: "daily"
+  notes: "Use sponsor CSVs/factsheets for metal ounces & shares out"
+
+fred:
+  series:
+    WALCL: "WALCL"
+    RRP: "RRPONTSYD"
+    TGA: "WTREGEN"
+    DXY_proxy: "DTWEXBGS"
+    TIPS_5Y_real: "DFII5"
+  cadence: "weekly"
+
+dealer_premiums:
+  sources:
+    - name: "DealerA"    # optional scraping/CSV
+      url: "https://example-dealer-a.com/feed.csv"
+      enabled: false
+  cadence: "daily"

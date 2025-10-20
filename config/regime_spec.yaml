@@ -1,0 +1,51 @@
+z_window_days: 126
+min_confidence: 0.55
+
+signals:
+  coverage:
+    squeeze:    { lt: 0.25 }
+    tightening: { lt: 0.40 }
+  backwardation:
+    squeeze:    { gt_pct: 0.01 }
+    tightening: { gt_pct: 0.0 }
+  lease:
+    squeeze:    { gt_pct: 0.01 }
+    tightening: { gt_pct: 0.005 }
+  dealer_short_z:
+    tightening: { gt: 1.0 }
+  etf_tension_z:
+    squeeze:    { gt: 1.5 }
+  liquidity_pulse_z:
+    expansion:  { lt: -0.7 }
+    neutral:    { between: [-0.7, 0.7] }
+
+logic:
+  - name: Squeeze
+    when:
+      all: [coverage.squeeze, backwardation.squeeze]
+      any: [lease.squeeze, etf_tension_z.squeeze]
+  - name: Tightening
+    when:
+      any: [coverage.tightening, backwardation.tightening, dealer_short_z.tightening]
+  - name: Resolution
+    when:
+      allof:
+        trending_up: [coverage]
+        trending_down: [lease]
+  - name: Expansion
+    when:
+      any: [liquidity_pulse_z.expansion]
+  - name: Neutral
+    fallback: true
+
+weights:
+  coverage: 0.30
+  backwardation: 0.25
+  lease: 0.15
+  dealer_short_z: 0.10
+  etf_tension_z: 0.10
+  liquidity_pulse_z: 0.10
+
+smoothing:
+  regime_ema_days: 3
+  hysteresis_days: 2

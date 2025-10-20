@@ -1,0 +1,19 @@
+# R / renv
+.Rhistory
+.Rproj.user/
+.RData
+renv/library/
+
+# Data & DB
+data/raw/
+data/external/
+db/duckdb/*.duckdb
+
+# Reports (rendered artifacts)
+report/weekly/*.html
+report/weekly/*.pdf
+report/daily/*.json
+report/daily/*.md
+
+# Secrets
+.env
