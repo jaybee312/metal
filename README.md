@@ -64,27 +64,7 @@ Outputs:
 
 ---
 
-## Configuration Overview
 
-### .env
-
-DB_BACKEND=duckdb
-DUCKDB_PATH=db/duckdb/metals.duckdb
-
-# Optional Postgres settings:
-
-# PGHOST=localhost
-
-# PGPORT=5432
-
-# PGDATABASE=metals
-
-# PGUSER=postgres
-
-# PGPASSWORD=changeme
-
-QK_API_KEY=your_quantkiosk_key_here
-FRED_API_KEY=optional
 
 ### config/universe.yaml
 
